@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import Navbar from "./components/Navbar";
+import TodoContainer from "./components/TodoContainer";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  useParams 
+} from "react-router-dom";
+import About from "./components/About";
 
 function App() {
+  let {slug} = useParams();
+  console.log(window.location);
+  let days = ['Sunday 🖖', 'Monday 💪😀', 'Tuesday 😜', 'Wednesday 😌☕️', 'Thursday 🤗', 'Friday 🍻', 'Saturday 😴'];
+  let d = new Date();
+  let dayName = days[d.getDay()];
+  var randomWordArray = Array(
+    "Oh my, it's ",
+    "Whoop, it's ",
+    "Happy ",
+    "Seems it's ",
+    "Awesome, it's ",
+    "Have a nice ",
+    "Happy fabulous ",
+    "Enjoy your "
+  );
+  const random = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<TodoContainer randomDay={random} randomDayName={dayName} />}/>
+            <Route exact path="/about" element={<About />}/>
+          </Routes>
+        </div>
+      </Router>
   );
 }
 
