@@ -5,14 +5,11 @@ import TodoContainer from "./components/TodoContainer";
 import {
   HashRouter as Router,
   Routes,
-  Route,
-  useParams 
+  Route
 } from "react-router-dom";
 import About from "./components/About";
 
 function App() {
-  let {slug} = useParams();
-  console.log(window.location);
   let days = ['Sunday 🖖', 'Monday 💪😀', 'Tuesday 😜', 'Wednesday 😌☕️', 'Thursday 🤗', 'Friday 🍻', 'Saturday 😴'];
   let d = new Date();
   let dayName = days[d.getDay()];
